@@ -1,0 +1,127 @@
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button >
+        <ion-icon class="t-white" name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="t-white">Weather Forcast</ion-title>    
+  </ion-toolbar>  
+
+  <div class="main">
+    <input class="search-box" type="text" placeholder="Search Your City" aria-label="Number" matInput
+      (keyup)="locationSearch($event)" [matAutocomplete]="auto3">
+    <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete">
+      <mat-option *ngFor="let option of filteredLocations" [value]="option.LocalizedName" (click)="selectLocation(option)">
+        {{option.LocalizedName}}
+      </mat-option>
+    </mat-autocomplete>
+
+    <div class="today-box">
+      <ion-row>
+        <ion-col size="6">
+          <p>Today</p>
+        </ion-col>
+        <ion-col size="6">
+          <p class="t-right">{{formatDate(wetherData?.Date,'dddd Do MMM')}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="7">
+          <p class="big-temp" style="display:inline-block ;">{{wetherData?.Temperature.Maximum.Value}}</p>
+          <p style="display:inline-block ;">F</p>
+        </ion-col>
+        <ion-col size="5">
+          <img *ngIf="headline?.Category=='thunderstorm'" src="/assets/icon/thunderstorm.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='rain'" src="/assets/icon/rain.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='broken-clouds'" src="/assets/icon/broken-clouds.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='clear-sky'" src="/assets/icon/clear-sky.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='few-clouds'" src="/assets/icon/few-clouds.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='mist'" src="/assets/icon/mist.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='scattered-clouds'" src="/assets/icon/scattered-clouds.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='shower-rain'" src="/assets/icon/shower-rain.png" alt="" class="img">
+          <img *ngIf="headline?.Category=='snow'" src="/assets/icon/snow.png" alt="" class="img">
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <p class="t-center">{{selectedLocation?.LocalizedName+", "+selectedLocation?.Country.LocalizedName}}</p>
+        </ion-col>
+      </ion-row>
+      
+    </div>
+
+    <div class="row2">
+      <ion-row>
+        <ion-col size="6">
+          <div class="box-m">
+            <ion-row>
+              <ion-col size="4">
+                <ion-icon class="icon-m" name="water-outline"></ion-icon>
+              </ion-col>
+              <ion-col size="8">
+                <p class="title">{{wetherData?.Day.Evapotranspiration.Value}}</p>
+                <p>Humidity</p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+
+        <ion-col size="6">
+          <div class="box-m">
+            <ion-row>
+              <ion-col size="4">
+                <ion-icon class="icon-m" name="speedometer-outline"></ion-icon>
+              </ion-col>
+              <ion-col size="8">
+                <p class="title">{{wetherData?.Day.Wind.Speed.Value}}</p>
+                <p>Presure</p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="row3">
+      <ion-row>
+        <ion-col size="4">
+          <div class="box-s">
+            <div style="margin:0 auto;width:fit-content;">
+              <p class="temp" style="display:inline-block;">{{day2?.Temperature.Maximum.Value}}</p>
+              <p class="cels" style="display:inline-block;">F</p>
+            </div>
+            <p class="t-center t-sm">{{getDay(day2?.Date)}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="box-s">
+            <div style="margin:0 auto;width:fit-content;">
+              <p class="temp" style="display:inline-block;">{{day3?.Temperature.Maximum.Value}}</p>
+              <p class="cels" style="display:inline-block;">F</p>
+            </div>
+            <p class="t-center t-sm">{{getDay(day3?.Date)}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="box-s">
+            <div style="margin:0 auto;width:fit-content;">
+              <p class="temp" style="display:inline-block;">{{day4?.Temperature.Maximum.Value}}</p>
+              <p class="cels" style="display:inline-block;">F</p>
+            </div>
+            <p class="t-center t-sm">{{getDay(day4?.Date)}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+  </div>
+
+
+    
+  
+</ion-content>
