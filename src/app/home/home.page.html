@@ -24,14 +24,14 @@
           <p>Today</p>
         </ion-col>
         <ion-col size="6">
-          <p class="t-right">{{formatDate(wetherData?.Date,'dddd Do MMM')}}</p>
+          <p class="t-right">{{wetherData?.Date | date}}</p>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="7">
-          <p class="big-temp" style="display:inline-block ;">{{wetherData?.Temperature.Maximum.Value}}</p>
-          <p style="display:inline-block ;">F</p>
+          <p class="big-temp" style="display:inline-block ;">{{fToCelsius(wetherData?.Temperature.Maximum.Value) | number :'1.0-0'}}</p>
+          <p style="display:inline-block ;">C</p>
         </ion-col>
         <ion-col size="5">
           <img *ngIf="headline?.Category=='thunderstorm'" src="/assets/icon/thunderstorm.png" alt="" class="img">
@@ -56,7 +56,7 @@
 
     <div class="row2">
       <ion-row>
-        <ion-col size="6">
+        <ion-col size="6" class="pl-0">
           <div class="box-m">
             <ion-row>
               <ion-col size="4">
@@ -70,7 +70,7 @@
           </div>
         </ion-col>
 
-        <ion-col size="6">
+        <ion-col size="6" class="pr-0">
           <div class="box-m">
             <ion-row>
               <ion-col size="4">
@@ -88,10 +88,10 @@
 
     <div class="row3">
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="4" class="pl-0">
           <div class="box-s">
             <div style="margin:0 auto;width:fit-content;">
-              <p class="temp" style="display:inline-block;">{{day2?.Temperature.Maximum.Value}}</p>
+              <p class="temp" style="display:inline-block;">{{day2?.Temperature.Maximum.Value }}</p>
               <p class="cels" style="display:inline-block;">F</p>
             </div>
             <p class="t-center t-sm">{{getDay(day2?.Date)}}</p>
@@ -106,7 +106,7 @@
             <p class="t-center t-sm">{{getDay(day3?.Date)}}</p>
           </div>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="4" class="pr-0">
           <div class="box-s">
             <div style="margin:0 auto;width:fit-content;">
               <p class="temp" style="display:inline-block;">{{day4?.Temperature.Maximum.Value}}</p>
@@ -117,6 +117,9 @@
         </ion-col>
       </ion-row>
     </div>
+
+    <p style="color:white;">{{location?.latitude}}</p>
+    <p style="color:white;">{{location?.longitude}}</p>
 
 
   </div>

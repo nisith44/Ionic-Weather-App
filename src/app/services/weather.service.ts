@@ -9,7 +9,7 @@ export class WeatherService {
 
   constructor(public http:HttpClient) { }
 
-  apiKey='EV3yePZ0sE8fqH3HXoajlka49GXbZO98'
+  apiKey='iCEuLlKyO14clJ3UfyqofkIGTh6IdUq9'
   getLocations(word){
     return this.http.get('http://dataservice.accuweather.com/locations/v1/cities/autocomplete',{
       params:{

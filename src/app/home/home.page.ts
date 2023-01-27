@@ -15,12 +15,18 @@ export class HomePage {
   day3: any;
   day4: any;
   headline: any;
+  location:any;
   constructor(public weatherService:WeatherService) {
     weatherService.getLocations("Toronto").subscribe((res:any)=>{
       console.log(res);
       this.filteredLocations=res
       this.selectedLocation=this.filteredLocations[0];
       this.getWeatherData()
+    })
+
+    navigator.geolocation.getCurrentPosition((p)=>{
+      this.location=p.coords
+      console.log("loca",p);
     })
   }
 
@@ -61,6 +67,10 @@ export class HomePage {
   formatDate(date,format){
     let aaa=moment(date).format(format);
     return aaa;
+  }
+
+  fToCelsius(f){
+    return (f-32)*5/9;
   }
 
 }
